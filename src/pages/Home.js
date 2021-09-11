@@ -1,21 +1,64 @@
 // Bibliotecas Externas
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Platform,
+  TouchableOpacity,
+} from 'react-native';
 
 export function Home() {
   return (
-    <View style={styles.container}>
-      <Text>React Native</Text>
+    <View style={styled.container}>
+      <Text style={styled.title}>Welcome, Igor Sasaki</Text>
 
-      <Text>Ignite</Text>
+      <TextInput
+        style={styled.input}
+        placeholder="New Skill"
+        placeholderTextColor="#555"
+      />
+
+      <TouchableOpacity style={styled.button} activeOpacity={0.7}>
+        <Text style={styled.buttonText}>Add</Text>
+      </TouchableOpacity>
+
+      <Text style={[styled.title, {marginTop: 50}]}>My Skills</Text>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
+const styled = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    backgroundColor: '#121015',
+    paddingHorizontal: 20,
+    paddingVertical: 70,
+  },
+  title: {
+    color: '#fff',
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  input: {
+    backgroundColor: '#1f1e25',
+    color: '#fff',
+    fontSize: 18,
+    padding: Platform.OS === 'ios' ? 15 : 10,
+    marginTop: 30,
+    borderRadius: 7,
+  },
+  button: {
+    backgroundColor: '#a370f7',
+    padding: 15,
+    borderRadius: 7,
     alignItems: 'center',
+    marginTop: 20,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 17,
+    fontWeight: 'bold',
   },
 });
