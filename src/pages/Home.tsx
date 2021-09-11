@@ -13,9 +13,14 @@ import {
 import {Button} from '../components/Button';
 import {SkillCard} from '../components/SkillCard';
 
-export function Home() {
+interface SkillData {
+  id: string;
+  name: string;
+}
+
+export const Home: React.FC = () => {
   const [newSkill, setNewSkill] = useState('');
-  const [mySkills, setMySkills] = useState([]);
+  const [mySkills, setMySkills] = useState<SkillData[]>([]);
   const [greeting, setGreeting] = useState('');
 
   useEffect(() => {
@@ -31,7 +36,12 @@ export function Home() {
   }, []);
 
   const handleAddNewSkill = () => {
-    setMySkills([...mySkills, newSkill]);
+    const data: SkillData = {
+      id: String(new Date().getTime()),
+      name: newSkill,
+    };
+
+    setMySkills([...mySkills, data]);
     setNewSkill('');
   };
 
@@ -55,12 +65,12 @@ export function Home() {
 
       <FlatList
         data={mySkills}
-        keyExtractor={item => `${item}_${Math.random()}`}
-        renderItem={({item}) => <SkillCard skill={item} />}
+        keyExtractor={item => item.id}
+        renderItem={({item}) => <SkillCard skill={item.name} />}
       />
     </View>
   );
-}
+};
 
 const styled = StyleSheet.create({
   container: {

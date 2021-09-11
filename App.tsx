@@ -5,13 +5,13 @@ import {StatusBar} from 'react-native';
 // Componentes
 import {Home} from './src/pages/Home';
 
-export function App() {
+const App: React.FC = () => {
   return (
     <>
       <StatusBar barStyle="light-content" />
       <Home />
     </>
   );
-}
+};
 
 export default App;

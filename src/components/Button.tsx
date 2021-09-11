@@ -1,17 +1,23 @@
 // Bibliotecas Externas
 import React from 'react';
-import {TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  TouchableOpacityProps,
+} from 'react-native';
 
-export function Button({onPress, title}) {
+interface ButtonProps extends TouchableOpacityProps {
+  title: string;
+}
+
+export const Button: React.FC<ButtonProps> = ({title, ...rest}) => {
   return (
-    <TouchableOpacity
-      style={styled.button}
-      activeOpacity={0.7}
-      onPress={onPress}>
+    <TouchableOpacity style={styled.button} activeOpacity={0.7} {...rest}>
       <Text style={styled.buttonText}>{title}</Text>
     </TouchableOpacity>
   );
-}
+};
 
 const styled = StyleSheet.create({
   button: {
