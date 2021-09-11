@@ -1,15 +1,20 @@
 // Bibliotecas Externas
 import React from 'react';
-import {TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  TouchableOpacityProps,
+} from 'react-native';
 
-interface SkillCardProps {
-  skill: string;
+interface SkillCardProps extends TouchableOpacityProps {
+  title: string;
 }
 
-export const SkillCard: React.FC<SkillCardProps> = ({skill}) => {
+export const SkillCard: React.FC<SkillCardProps> = ({title, ...rest}) => {
   return (
-    <TouchableOpacity style={styled.buttonSkill}>
-      <Text style={styled.textSkill}>{skill}</Text>
+    <TouchableOpacity style={styled.buttonSkill} {...rest}>
+      <Text style={styled.textSkill}>{title}</Text>
     </TouchableOpacity>
   );
 };

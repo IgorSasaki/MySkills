@@ -45,6 +45,10 @@ export const Home: React.FC = () => {
     setNewSkill('');
   };
 
+  const handleRemoveSkill = (id: string) => {
+    setMySkills(mySkills.filter(skill => skill.id !== id));
+  };
+
   return (
     <View style={styled.container}>
       <Text style={styled.title}>Welcome, Igor Sasaki</Text>
@@ -66,7 +70,12 @@ export const Home: React.FC = () => {
       <FlatList
         data={mySkills}
         keyExtractor={item => item.id}
-        renderItem={({item}) => <SkillCard skill={item.name} />}
+        renderItem={({item}) => (
+          <SkillCard
+            title={item.name}
+            onPress={() => handleRemoveSkill(item.id)}
+          />
+        )}
       />
     </View>
   );
